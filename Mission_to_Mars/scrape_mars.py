@@ -28,8 +28,8 @@ def scrape_news():
 
     # Store data in a dictionary
     mars_news_data = {
-        "Mars News": title,
-        "News Summary": descript
+        "Mars_News": title,
+        "News_Summary": descript
     }
 
     # Close the browser after scraping
@@ -56,11 +56,13 @@ def scrape_image():
     # Get the latest mars news title and description
     mars_image_path = soup.find('img')["src"]
 
+    mars_image= {"Mars" : mars_image_path}
+
     # Close the browser after scraping
     browser.quit()
 
     # Return results
-    return mars_image_path
+    return mars_image
 
 def scrape_hemispheres():
     # Set up Splinter
@@ -99,7 +101,7 @@ def scrape_hemispheres():
         {"title": cerb_title, "img_url": cerb_image_path},
         {"title": schiap_title, "img_url": schiap_image_path},
         {"title": syrtis_title, "img_url": syrtis_image_path},
-        {"title": valles_title, "img_url": valles_image_path},
+        {"title": valles_title, "img_url": valles_image_path}
     ]
 
     # Close the browser after scraping

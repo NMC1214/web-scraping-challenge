@@ -17,7 +17,7 @@ def home():
     mars_datadb = mongo.db.collection.find_one()
 
     # Return template and data
-    return render_template("index.html", mars=mars_datadb)
+    return render_template("index.html", mars_datadb=mars_datadb)
 
 
 # Route that will trigger the scrape function
@@ -26,12 +26,12 @@ def scrape():
 
     # Run the scrape function
     mars_data = scrape_mars.scrape_news()
-    mars_image_path = scrape_mars.scrape_image()
+    mars_image = scrape_mars.scrape_image()
     hemisphere_image_urls = scrape_mars.scrape_hemispheres()
 
     # Update the Mongo database using update and upsert=True
     mongo.db.collection.update({}, mars_data, upsert=True)
-    mongo.db.collection.update({}, mars_image_path, upsert=True)
+    mongo.db.collection.update({}, mars_image, upsert=True)
     mongo.db.collection.update({}, hemisphere_image_urls, upsert=True)
 
     # Redirect back to home page

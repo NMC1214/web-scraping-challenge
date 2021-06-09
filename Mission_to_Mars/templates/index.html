@@ -14,16 +14,20 @@
     <div class="jumbotron text-center">
       <h1>Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+ 
     <div class="row">
       <div class="col-md-12">
         <h2>Latest Mars News</h2>
         <h3>{{mars_datadb.mars_news_data}}</h3>
       </div>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <h2>Featured Mars Image</h2>
         <img src="{{ mars_datadb.mars_image_path}}">
       </div>
+
       <div class="col-md-6">
         <h2>Mars Facts</h2>
         <table border="1" class="dataframe">
@@ -79,10 +83,10 @@
     <div class="row">
       <div class="col-md-12">
         <h2>Mars Hemispheres</h2>
-        <h3>Nicole to update with images and links</h3>
+        <h3>{{mars_datadb.hemisphere_image_urls}}</h3>
       </div>
-  </div>
-  </div>
+    </div>
+  </div>  
 </body>
 
 </html>
