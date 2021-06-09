@@ -22,21 +22,22 @@ def scrape_news():
 
     # Get the latest mars news title and description
     articles = soup.find('div', class_='list_text')
-    
-    title = articles.find('div',class_='content_title').text
-    descript = articles.find('div',class_='article_teaser_body').text
+
+    title = articles.find('div', class_='content_title').text
+    descript = articles.find('div', class_='article_teaser_body').text
 
     # Store data in a dictionary
-    mars_news_data = {
-        "Mars_News": title,
-        "News_Summary": descript
-    }
+    # mars_news_data = {
+    #     "Mars_News": title,
+    #     "News_Summary": descript
+    # }
 
     # Close the browser after scraping
     browser.quit()
 
     # Return results
-    return mars_news_data
+    return (title,descript)
+
 
 def scrape_image():
     # Set up Splinter
@@ -56,13 +57,14 @@ def scrape_image():
     # Get the latest mars news title and description
     mars_image_path = soup.find('img')["src"]
 
-    mars_image= {"Mars" : mars_image_path}
+    # mars_image = {"Mars": mars_image_path}
 
     # Close the browser after scraping
     browser.quit()
 
     # Return results
-    return mars_image
+    return mars_image_path
+
 
 def scrape_hemispheres():
     # Set up Splinter
@@ -93,10 +95,10 @@ def scrape_hemispheres():
     syrtis_image_path = url + syrtis_image
     syrtis_title = hemispheres.find_all('img')[2]["alt"]
 
-    valles_image = hemispheres.find_all('img')[2]["src"]
+    valles_image = hemispheres.find_all('img')[3]["src"]
     valles_image_path = url + valles_image
-    valles_title = hemispheres.find_all('img')[2]["alt"]
-    
+    valles_title = hemispheres.find_all('img')[3]["alt"]
+
     hemisphere_image_urls = [
         {"title": cerb_title, "img_url": cerb_image_path},
         {"title": schiap_title, "img_url": schiap_image_path},
@@ -109,4 +111,17 @@ def scrape_hemispheres():
 
     # Return results
     return hemisphere_image_urls
+
+def scrape_all():
+    data = {
+        "news_title": [],
+        "news_paragraph": [],
+        "featured_image": [],
+        "hemispheres": [],
+    }
+
+    data["news_title"].append(title)
+    data["news_paragraph"].append(descript)
+    data["featured_image"].append(mars_image_path)
+    data["hemispheres"].append(hemisphere_image_urls)
 
