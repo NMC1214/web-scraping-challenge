@@ -5,21 +5,82 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Costa Rica Weather</title>
+  <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
   <div class="container-fluid">
     <div class="jumbotron text-center">
-      <h1>Visit the...</h1>
-      <p>Beach. Rainforest. Volcano. Tree House. Sloths.</p>
-      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Latest Mars News</h2>
+        <h3>{{mars_datadb.mars_news_data}}</h3>
+      </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Featured Mars Image</h2>
+        <img src="{{ mars_datadb.mars_image_path}}">
+      </div>
+      <div class="col-md-6">
+        <h2>Mars Facts</h2>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>Mars - Earth Comparison</th>
+              <th>Mars</th>
+              <th>Earth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>1</th>
+              <td>Diameter:</td>
+              <td>6,779 km</td>
+              <td>12,742 km</td>
+            </tr>
+            <tr>
+              <th>2</th>
+              <td>Mass:</td>
+              <td>6.39 × 10^23 kg</td>
+              <td>5.97 × 10^24 kg</td>
+            </tr>
+            <tr>
+              <th>3</th>
+              <td>Moons:</td>
+              <td>2</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <th>4</th>
+              <td>Distance from Sun:</td>
+              <td>227,943,824 km</td>
+              <td>149,598,262 km</td>
+            </tr>
+            <tr>
+              <th>5</th>
+              <td>Length of Year:</td>
+              <td>687 Earth days</td>
+              <td>365.24 days</td>
+            </tr>
+            <tr>
+              <th>6</th>
+              <td>Temperature:</td>
+              <td>-87 to -5 °C</td>
+              <td>-88 to 58°C</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <img src="{{ vacation.sloth_img }}" alt="Sloth">
-    <h2>The typical weather in Costa Rica is:</h2>
-    <h3>Max Temp: {{ vacation.max_temp }}</h3>
-    <h3>Min Temp: {{ vacation.min_temp }}</h3>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Mars Hemispheres</h2>
+        <h3>Nicole to update with images and links</h3>
+      </div>
   </div>
   </div>
 </body>
