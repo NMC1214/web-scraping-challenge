@@ -4,7 +4,6 @@ import time
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 
-
 def scrape_news():
     # Set up Splinter
     executable_path = {'executable_path': ChromeDriverManager().install()}
@@ -25,12 +24,6 @@ def scrape_news():
 
     title = articles.find('div', class_='content_title').text
     descript = articles.find('div', class_='article_teaser_body').text
-
-    # Store data in a dictionary
-    # mars_news_data = {
-    #     "Mars_News": title,
-    #     "News_Summary": descript
-    # }
 
     # Close the browser after scraping
     browser.quit()
@@ -63,7 +56,7 @@ def scrape_image():
     browser.quit()
 
     # Return results
-    return mars_image_path
+    return url
 
 
 def scrape_hemispheres():
@@ -112,16 +105,19 @@ def scrape_hemispheres():
     # Return results
     return hemisphere_image_urls
 
+print(scrape_hemispheres())
+
 def scrape_all():
+
+    title, descript = scrape_news()
+    url = scrape_image()
+    hemisphere_image_urls = scrape_hemispheres()
+
     data = {
-        "news_title": [],
-        "news_paragraph": [],
-        "featured_image": [],
-        "hemispheres": [],
+        "news_title": title,
+        "news_paragraph": descript,
+        "featured_image": url,
+        "hemispheres": hemisphere_image_urls,
     }
 
-    data["news_title"].append(title)
-    data["news_paragraph"].append(descript)
-    data["featured_image"].append(mars_image_path)
-    data["hemispheres"].append(hemisphere_image_urls)
-
+    return data
