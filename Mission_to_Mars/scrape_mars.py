@@ -9,7 +9,7 @@ def scrape_news():
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
 
-    # Visit MarsFacts.com
+    # Visit redplanetscience.com
     url = 'https://redplanetscience.com'
     browser.visit(url)
 
@@ -37,7 +37,7 @@ def scrape_image():
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
 
-    # Visit MarsFacts.com
+    # Visit mars image url
     url = 'https://spaceimages-mars.com/image/news/img5.jpg'
     browser.visit(url)
 
@@ -47,10 +47,8 @@ def scrape_image():
     html = browser.html
     soup = bs(html, "html.parser")
 
-    # Get the latest mars news title and description
+    # Get the path to the image
     mars_image_path = soup.find('img')["src"]
-
-    # mars_image = {"Mars": mars_image_path}
 
     # Close the browser after scraping
     browser.quit()
@@ -64,7 +62,7 @@ def scrape_hemispheres():
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
 
-    # Visit MarsFacts.com
+    # Visit marshemispheres.com
     url = 'https://marshemispheres.com/'
     browser.visit(url)
 
@@ -74,29 +72,26 @@ def scrape_hemispheres():
     html = browser.html
     soup = bs(html, "html.parser")
 
-    # Get the latest mars news title and description
+    # Get the image paths
     hemispheres = soup.find('div', class_='result-list')
+
     cerb_image = hemispheres.find_all('img')[0]["src"]
     cerb_image_path = url + cerb_image
-    cerb_title = hemispheres.find_all('img')[0]["alt"]
 
     schiap_image = hemispheres.find_all('img')[1]["src"]
     schiap_image_path = url + schiap_image
-    schiap_title = hemispheres.find_all('img')[1]["alt"]
 
     syrtis_image = hemispheres.find_all('img')[2]["src"]
     syrtis_image_path = url + syrtis_image
-    syrtis_title = hemispheres.find_all('img')[2]["alt"]
 
     valles_image = hemispheres.find_all('img')[3]["src"]
     valles_image_path = url + valles_image
-    valles_title = hemispheres.find_all('img')[3]["alt"]
 
     hemisphere_image_urls = [
-        {"title": cerb_title, "img_url": cerb_image_path},
-        {"title": schiap_title, "img_url": schiap_image_path},
-        {"title": syrtis_title, "img_url": syrtis_image_path},
-        {"title": valles_title, "img_url": valles_image_path}
+        {"title": "Cerberus Hemisphere Enhanced", "img_url": cerb_image_path},
+        {"title": "Schiaparelli Hemisphere Enhanced", "img_url": schiap_image_path},
+        {"title": "Syrtis Major Hemisphere Enhanced", "img_url": syrtis_image_path},
+        {"title": "Valles Marineris Hemisphere Enhanced", "img_url": valles_image_path}
     ]
 
     # Close the browser after scraping
@@ -104,8 +99,6 @@ def scrape_hemispheres():
 
     # Return results
     return hemisphere_image_urls
-
-print(scrape_hemispheres())
 
 def scrape_all():
 
